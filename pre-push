@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "🚀 Pre-push hook executed!"
+exit 0

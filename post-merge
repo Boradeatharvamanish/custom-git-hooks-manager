@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "🚀 Post-merge hook executed!"
+exit 0

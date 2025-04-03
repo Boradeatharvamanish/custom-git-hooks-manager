@@ -1,0 +1,23 @@
+name: Enforce Hooks
+
+on: [push, pull_request]
+
+jobs:
+  check-hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check required hooks
+        run: |
+          REQUIRED_HOOKS=("pre-commit" "pre-push")
+          for hook in "${REQUIRED_HOOKS[@]}"; do
+            if [ ! -f ".git/hooks/$hook" ]; then
+              echo "❌ Missing required hook: $hook"
+              exit 1
+            fi
+          done
+
+      - name: Success
+        run: echo "✅ All required hooks are present!"
